@@ -7,6 +7,7 @@ import aiohttp.server
 import asyncio
 from urllib.parse import urlparse, parse_qsl
 from aiohttp.multidict import MultiDict
+import json
 
 
 class HttpRequestHandler(aiohttp.server.ServerHttpProtocol):
@@ -21,15 +22,28 @@ class HttpRequestHandler(aiohttp.server.ServerHttpProtocol):
         else:
             post_params = None
         content = "<h1>It Works!</h1>"
+        content = json.dumps(
+                {
+                    "result": "ok", 
+                    "_id": "11111111",
+                    "tasks": {
+                        "script": [
+                            "whoami",
+                            "date",
+                            "pwd",
+                            ]
+                        },
+                    }
+                )
         print("Preparing Response")
-        yield from asyncio.sleep(5)
+        yield from asyncio.sleep(1)
         print("Finished Response")
         # if get_params:
         #     content += "<h2>Get params</h2><p>" + str(get_params) + "</p>"
         # if post_params:
         #     content += "<h2>Post params</h2><p>" + str(post_params) + "</p>"
         bcontent = content.encode('utf-8')
-        response.add_header('Content-Type', 'text/html; charset=UTF-8')
+        response.add_header('Content-Type', 'application/json; charset=UTF-8')
         response.add_header('Content-Length', str(len(bcontent)))
         response.send_headers()
         response.write(bcontent)
