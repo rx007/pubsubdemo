@@ -3,7 +3,7 @@
 ## pub.py
   publisher
 
-## sub.py
+## taaster worker.py
   worker
 
 ## heavy_server.py
