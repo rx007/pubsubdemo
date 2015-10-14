@@ -3,7 +3,7 @@ require "json"
 
 
 data = {
-    "id"=> "11111"
+    "id"=> "2"
 }
 connection = Bunny.new
 connection.start

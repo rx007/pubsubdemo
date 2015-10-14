@@ -27,6 +27,7 @@ class HttpRequestHandler(aiohttp.server.ServerHttpProtocol):
                     "result": "ok", 
                     "_id": "11111111",
                     "tasks": {
+                        "host": "localhost",
                         "script": [
                             "whoami",
                             "date",
@@ -36,7 +37,7 @@ class HttpRequestHandler(aiohttp.server.ServerHttpProtocol):
                     }
                 )
         print("Preparing Response")
-        yield from asyncio.sleep(1)
+        yield from asyncio.sleep(5)
         print("Finished Response")
         # if get_params:
         #     content += "<h2>Get params</h2><p>" + str(get_params) + "</p>"
