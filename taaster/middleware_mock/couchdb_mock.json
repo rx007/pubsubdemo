@@ -1,0 +1,35 @@
+{
+    "1": {
+        "result": "ok", 
+        "_id": "1",
+        "tasks": {
+            "ssh_host": "127.0.0.1",
+            "ssh_port": 22,
+            "ssh_username": "zhao",
+            "ssh_password": "19860729",
+            "script": [
+                "whoami",
+            "date",
+            "pwd"
+                ]
+        }
+    },
+    "2": {
+        "result": "ok", 
+        "_id": "2",
+        "tasks": {
+            "ssh_host": "127.0.0.1",
+            "ssh_port": 2222,
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "script": [
+                "whoami",
+                "date",
+                "pwd",
+                "sleep 5",
+                "ps aux"
+                ]
+        }
+    }
+
+}
