@@ -21,13 +21,20 @@ class BaseJobMixin:
 
 class CouchDBJobStorageMixin(BaseJobMixin):
     couchdb_host = "localhost"
-    couchdb_port = 8080
+    couchdb_port = 8081
 
     def get_job_query(self, job_id):
         return "http://%s:%d/log/%s" % (self.couchdb_host, self.couchdb_port, job_id)
 
     async def get_job(self, job_id):
         response = await aiohttp.request("GET", self.get_job_query(job_id))
+        chunk = await response.content.read()
+        response.close()
+        return json.loads(chunk.decode('utf-8'))
+
+    async def put_job(self, job_id, doc):
+        body = json.dumps(doc)
+        response = await aiohttp.request("PUT", self.get_job_query(job_id), data=body)
         chunk = await response.content.read()
         response.close()
         return json.loads(chunk.decode('utf-8'))

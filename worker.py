@@ -17,6 +17,11 @@ class TaasWorker(
 
     async def process_output(self, job_id, data):
         self.logger.info("job[%s] > %s" % (job_id, data))
+        job = await self.get_job(job_id)
+        if not "output"  in job["tasks"]:
+            job["tasks"]["output"] = []
+        job["tasks"]["output"].append(data)
+        await self.put_job(job_id, job)
 
     async def do_work(self, job_id):
         """
