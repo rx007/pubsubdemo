@@ -17,7 +17,7 @@ import argparse
 def main():
     worker = TaasWorker(
             couchdb_host = "localhost",
-            couchdb_port = 8080,
+            couchdb_port = 8081,
             amqp_host = "localhost",
             amqp_port = 5672,
             amqp_queue="taas.test_queue"

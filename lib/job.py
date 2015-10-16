@@ -24,7 +24,7 @@ class CouchDBJobStorageMixin(BaseJobMixin):
     couchdb_port = 8080
 
     def get_job_query(self, job_id):
-        return "http://%s:%d/%s" % (self.couchdb_host, self.couchdb_port, job_id)
+        return "http://%s:%d/log/%s" % (self.couchdb_host, self.couchdb_port, job_id)
 
     async def get_job(self, job_id):
         response = await aiohttp.request("GET", self.get_job_query(job_id))
