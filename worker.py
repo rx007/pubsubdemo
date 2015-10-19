@@ -34,6 +34,7 @@ class TaasWorker(
         ssh_username = job['tasks']['ssh_username']
         ssh_password = job['tasks']['ssh_password']
         cmd_list = job['tasks']['script']
+        print(ssh_host, ssh_port, ssh_username, ssh_password)
         await self.do_ssh_job(
                 ssh_host,
                 ssh_port,

@@ -19,16 +19,16 @@ async def get_log(request):
     result = json.dumps(storage.get(key, {}))
     return web.Response(body=result.encode('utf-8'))
 
-async def post_log(request):
-    global storage
-    body = await request.read()
-    key = str(len(storage.keys()) + 1)
-    storage[key] = json.loads(body.decode('utf-8'))
-    json.dumps(storage.get(key, {}))
-    result = json.dumps({"result": "ok", "id": key})
-    return web.Response(body=result.encode('utf-8'))
+# async def post_log(request):
+#     global storage
+#     body = await request.read()
+#     key = str(len(storage.keys()) + 1)
+#     storage[key] = json.loads(body.decode('utf-8'))
+#     json.dumps(storage.get(key, {}))
+#     result = json.dumps({"result": "ok", "id": key})
+#     return web.Response(body=result.encode('utf-8'))
 
-async def put_log(request):
+async def post_log(request):
     global storage
     key = request.match_info.get("key")
     body = await request.read()
@@ -55,10 +55,6 @@ async def log_handle(request):
         res = await post_log(request)
         return res
 
-    if method == "PUT":
-        res = await put_log(request)
-        return res
-
     if method == "DELETE":
         res = await delete_log(request)
         return res
@@ -67,7 +63,7 @@ async def init(loop):
     app = web.Application(loop=loop)
     app.router.add_route('GET', '/log/{key}', log_handle)
     app.router.add_route('POST', '/log/', log_handle)
-    app.router.add_route('PUT', '/log/{key}', log_handle)
+    app.router.add_route('POST', '/log/{key}', log_handle)
     app.router.add_route('DELETE', '/log/{key}', log_handle)
 
     srv = await loop.create_server(app.make_handler(),

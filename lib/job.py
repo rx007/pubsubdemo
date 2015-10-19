@@ -34,9 +34,10 @@ class CouchDBJobStorageMixin(BaseJobMixin):
 
     async def put_job(self, job_id, doc):
         body = json.dumps(doc)
-        response = await aiohttp.request("PUT", self.get_job_query(job_id), data=body)
+        response = await aiohttp.request("POST", self.get_job_query(job_id), data=body)
         chunk = await response.content.read()
         response.close()
+        print(chunk)
         return json.loads(chunk.decode('utf-8'))
 
 
