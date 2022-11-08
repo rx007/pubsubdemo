@@ -30,7 +30,7 @@ pycrypto==2.6.1
 simplegeneric==0.8.1
 six==1.10.0
 supervisor==4.0.0.dev0
-tornado==4.2.1
+tornado==5.1
 traitlets==4.0.0
 Twisted==15.4.0
 Werkzeug==0.10.4
