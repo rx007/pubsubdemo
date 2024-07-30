@@ -32,6 +32,6 @@ six==1.10.0
 supervisor==4.0.0.dev0
 tornado==4.2.1
 traitlets==4.0.0
-Twisted==15.4.0
+Twisted==24.7.0rc1
 Werkzeug==0.10.4
 zope.interface==4.1.2
