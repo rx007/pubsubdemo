@@ -24,7 +24,7 @@ pexpect==3.3
 pickleshare==0.5
 pika==0.10.0
 py-bcrypt==0.4
-pyasn1==0.1.9
+pyasn1==0.6.2
 pycparser==2.14
 pycrypto==2.6.1
 simplegeneric==0.8.1
